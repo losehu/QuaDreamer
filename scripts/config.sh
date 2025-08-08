@@ -1,0 +1,11 @@
+export http_proxy="http://127.0.0.1:8080"
+export https_proxy="http://127.0.0.1:8080"
+export socks_proxy="socks5://127.0.0.1:1080"
+export ADD_IMU="True"
+export ADD_TSR="False"
+export ADD_OBJ="True"
+export ADD_OBJ_ATTN1="True"
+export ADD_FTR="True"
+export ADD_SVD="True"
+export ADD_MAMBA="True"
+export CUDA_VISIBLE_DEVICES=0

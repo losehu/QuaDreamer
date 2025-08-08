@@ -1,0 +1,146 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    
+
+
+        {
+            "name": "FTR",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/autodl-tmp/TrackDiffusion-SVD/test_fft.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "test",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/autodl-tmp/TrackDiffusion-SVD/TSR/test.py",
+            "console": "integratedTerminal",
+            "cwd": "/root/autodl-tmp/TrackDiffusion-SVD",
+        },
+        {
+            "name": "webdemo",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "web_demo.py",
+            "console": "integratedTerminal",
+            "cwd": "/root/autodl-tmp/TrackDiffusion-SVD",
+        },
+        {
+            "name": "val",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "val.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "/root/autodl-tmp/TrackDiffusion-SVD",
+            "env": {
+                "ADD_IMU": "False",
+                "ADD_TSR":"False",
+                "ADD_OBJ":"True",
+                "ADD_OBJ_ATTN1":"True",
+            }
+
+        },
+        {
+            "name": "mydataload",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/autodl-tmp/TrackDiffusion-SVD/mydata.py",
+            "console": "integratedTerminal",
+            "cwd": "/root/autodl-tmp/TrackDiffusion-SVD",
+            "python": "/root/micromamba/envs/svd/bin/python"
+        },
+        {
+            "name": "stage1",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "accelerate.commands.launch", //调试accelerate launch
+            "args": [
+                "/root/autodl-tmp/TrackDiffusion-SVD/train_svd_tracklet.py",
+                "--pretrained_model_name_or_path",
+                "/root/autodl-tmp/TrackDiffusion-SVD/TrackDiffusion_Pretrain/stable-video-diffusion-img2vid",
+                "--per_gpu_batch_size",
+                "2",
+                "--gradient_accumulation_steps",
+                "1",
+                "--max_train_steps",
+                "100000",
+                "--checkpointing_steps",
+                "1000",
+                "--checkpoints_total_limit",
+                "3",
+                "--learning_rate",
+                "2e-4",
+                "--lr_warmup_steps",
+                "750",
+                "--seed",
+                "1",
+                "--mixed_precision",
+                "fp16",
+                "--validation_steps",
+                "500",
+                "--train_mode",
+                "stage1",
+                "--pretrain_unet",
+                "/root/autodl-tmp/TrackDiffusion-SVD/TrackDiffusion_Pretrain/svd_cam/" 
+
+                // "--resume_from_checkpoint",
+                // "/root/autodl-tmp/TrackDiffusion-SVD/outputs/2025-02-25-15-09-56/checkpoint-21000"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "/root/autodl-tmp/TrackDiffusion-SVD",
+            "python": "/root/micromamba/envs/svd/bin/python",
+            "justMyCode": false,
+            "env": {
+                "ADD_IMU": "False",
+                "ADD_TSR":"False",
+                "ADD_OBJ":"True",
+                "ADD_OBJ_ATTN1":"True",
+            }
+        },
+        {
+            "name": "stage2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/autodl-tmp/TrackDiffusion-SVD/train_svd_tracklet.py",
+            "args": [
+                "--pretrained_model_name_or_path",
+                "/root/autodl-tmp/TrackDiffusion-SVD/TrackDiffusion_Pretrain/stable-video-diffusion-img2vid",
+                "--per_gpu_batch_size",
+                "1",
+                "--gradient_accumulation_steps",
+                "1",
+                "--max_train_steps",
+                "100000",
+                "--checkpointing_steps",
+                "1000",
+                "--checkpoints_total_limit",
+                "3",
+                "--learning_rate",
+                "3e-5",
+                "--lr_warmup_steps",
+                "750",
+                "--seed",
+                "1",
+                "--mixed_precision",
+                "fp16",
+                "--validation_steps",
+                "1",
+                "--pretrain_unet",
+                "/root/autodl-tmp/TrackDiffusion-SVD/outputs1",
+                "--train_mode",
+                "stage2"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "/root/autodl-tmp/TrackDiffusion-SVD",
+            "python": "/root/micromamba/envs/svd/bin/python",
+            "justMyCode": false,
+            "env": {
+                "ADD_IMU": "False",
+                "ADD_TSR":"False",
+            }
+        },
+    ]
+}

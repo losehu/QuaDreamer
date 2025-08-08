@@ -1,0 +1,16 @@
+mydata/
+outputs/
+TrackDiffusion_Pretrain/
+trackdiffusion_ytvis/
+*.pyc
+.ipynb_checkpoints/
+*.safetensors
+*.ckpt
+*.jpg
+*.txt
+*.pth
+.DS_Store
+.vscode/
+.vscode/launch.json
+*.tar
+box_*/
